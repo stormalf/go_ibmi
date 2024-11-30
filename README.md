@@ -22,6 +22,7 @@ For more information about the reason of each change, please check the opened is
 ## List of changes
 
 list of files impacted by the changes:
+
     - src/crypto/x509/cert_pool.go (updated)
     - src/crypto/x509/parser.go (updated)
     - src/os/removeall_at.go (updated)
