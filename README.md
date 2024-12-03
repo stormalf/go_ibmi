@@ -109,13 +109,17 @@ Go to go-aix-ppc64-bootstrap/src and execute :
 
     ./all.bash
 
-And if all is correct you will see something like : 
+And if all is correct you will see something like (with go 1.22.8 only for now) : 
 
     ##### Test execution environment.
     # GOARCH: ppc64
     # CPU: POWER10
     # GOOS: aix
     # OS Version: OS400 5 7 00780005CAB1
+
+## current status
+
+The go 1.24 failed with same changes done on 1.22.8. Memory issue during compilation of go module.
 
 
 
