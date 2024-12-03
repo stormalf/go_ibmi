@@ -74,6 +74,8 @@ Second step is to generate the boostrap for your IBMi for that updates the .go :
     export GOTMPDIR=~/tmp
     export GOROOT=~/go1.24
     export PATH=~/go1.24/bin:$PATH
+    #issue with go1.24 and garbage collector 
+    export GOGC=off
 
     source .go
 
@@ -102,6 +104,7 @@ define the .go like :
     export GOTMPDIR=~/tmp
     export GOROOT=~/go1.24
     export PATH=~/go1.24/bin:$PATH
+    export GOGC=off
 
     source .go
 
@@ -119,7 +122,15 @@ And if all is correct you will see something like (with go 1.22.8 only for now) 
 
 ## current status
 
-The go 1.24 failed with same changes done on 1.22.8. Memory issue during compilation of go module.
+The go 1.24 failed with same changes done on 1.22.8. Memory issue during compilation of go module. The issue seems to be related to the garbage collector.
+The issue is :
+
+    SIGSEGV: segmenation violation
+    routine.getGCMaskOnDemand (0x100a59b80) .../src/runtime/type.go:108
+
+We can as a workaround disable the garbage collector by setting GOGC=off.
+After that at least go1.24 can compile the hello world example. 
+Trying to test some go modules with go1.24 to see if we have other issues.
 
 
 
