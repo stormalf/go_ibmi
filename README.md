@@ -128,9 +128,13 @@ The issue is :
     SIGSEGV: segmenation violation
     routine.getGCMaskOnDemand (0x100a59b80) .../src/runtime/type.go:108
 
+It seems like the garbage collector is pointing to a wrong memory location on OS400 due probably with wrong bit masking used.
+
 We can as a workaround disable the garbage collector by setting GOGC=off.
 After that at least go1.24 can compile the hello world example. 
 Trying to test some go modules with go1.24 to see if we have other issues.
+
+Another issue is due to sigset_t struct already defined in os400 in /usr/include/sys/time.h (similar issue described here : https://community.ibm.com/community/user/power/discussion/gcc-struct-sigset-t-conflicts-with-aix-systimeh). Need to check if using gcc-12 instead of gcc-10 will solve the issue. A workaround is to compile using CGO_ENABLED=0 for now.
 
 
 
