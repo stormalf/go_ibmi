@@ -127,24 +127,19 @@ And if all is correct you will see something like (with go 1.22.8 only for now) 
 
 ## current status
 
-The go 1.24 failed with same changes done on 1.22.8. Memory issue during compilation of go module. The issue seems to be related to the garbage collector.
-The issue is :
+The go 1.24 needs to deactivate the garbage collector by setting GOGC=off.
+The issue was :
 
     SIGSEGV: segmenation violation
     routine.getGCMaskOnDemand (0x100a59b80) .../src/runtime/type.go:108
 
-It seems like the garbage collector is pointing to a wrong memory location on OS400 due probably with wrong bit masking used.
-
-We can as a workaround disable the garbage collector by setting GOGC=off.
 After that at least go1.24 can compile the hello world example. 
-Trying to test some go modules with go1.24 to see if we have other issues.
 
 Another issue is due to sigset_t struct already defined in os400 in /usr/include/sys/time.h (similar issue described here : https://community.ibm.com/community/user/power/discussion/gcc-struct-sigset-t-conflicts-with-aix-systimeh). Gcc-12 solves the issue. 
 
 And go 1.24 is working fine on IBMi! 
 
 Next steps are to try to compile some other go projects on IBMi to see if we have other issues.
-
 
 
 
