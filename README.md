@@ -3,7 +3,7 @@
 This repository is based on all work done by the community in order to make the Go programming language available on IBMi.
 
 This repo contains a fork of Go 1.24 with modifications merged from [https://github.com/JasonTashtego/go]. 
-It's a wonderful job done by the community and here it's to have all existing information about all changes that need to be done to have go compiling on IBMi. I tested only on IBMi V7R5 with go 1.22.8 and go 1.24. And for now even if it compiles fine go and hello world program, something wrong with go dependencies. The last issue remaining is about compiling the grafana project that fails for now when downloading dependencies with timeout. But curl done from the same IBMi using the same URL works fine. Not sure yet what is wrong.
+It's a wonderful job done by the community and here it's to have all existing information about all changes that need to be done to have go compiling on IBMi. I tested only on IBMi V7R5 with go 1.22.8 and go 1.24. And for now even if it compiles fine go and hello world program.
 
 
 
@@ -17,7 +17,6 @@ It's an experimental project and it's not intended to be used in production. It'
 Congratulations to everyone who contributed to making go avalaible on IBMi! Very impressive job from all people involved in this open issue: [[golang#45017](https://github.com/golang/go/issues/45017)].
 
 Here it's based on Jason Tashtego's repository that is the most updated and has all the changes that are needed to compile go on IBMi.
-I tried here the same steps as Jason Tashtego but with the latest version of go (1.24). Not tested yet (but 1.22.8 works fine and perhaps doing the same changes with latest go version will work fine). We'll see.
 
 For more information about the reason of each change, please check the opened issue and Jason Tashtego's repository.
 
@@ -139,8 +138,7 @@ Another issue is due to sigset_t struct already defined in os400 in /usr/include
 
 And go 1.24 is working fine on IBMi! 
 
-Next steps are to try to compile some other go projects on IBMi to see if we have other issues.
-
+The issues with go dependencies are due to the DNS port 53 not listening on the IBMi. 
 
 
 # The Go Programming Language
