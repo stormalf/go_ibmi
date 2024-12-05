@@ -3,7 +3,9 @@
 This repository is based on all work done by the community in order to make the Go programming language available on IBMi.
 
 This repo contains a fork of Go 1.24 with modifications merged from [https://github.com/JasonTashtego/go]. 
-It's a wonderful job done by the community and here it's to have all existing information about all changes that need to be done to have go compiling on IBMi. I tested only on IBMi V7R5 with go 1.22.8. And for now even if it compiles fine go and hello world program, something wrong with go dependencies. The last issue remaining is about compiling the grafana project that fails for now when downloading dependencies with timeout. But curl done from the same IBMi using the same URL works fine. Not sure yet what is wrong.
+It's a wonderful job done by the community and here it's to have all existing information about all changes that need to be done to have go compiling on IBMi. I tested only on IBMi V7R5 with go 1.22.8 and go 1.24. And for now even if it compiles fine go and hello world program, something wrong with go dependencies. The last issue remaining is about compiling the grafana project that fails for now when downloading dependencies with timeout. But curl done from the same IBMi using the same URL works fine. Not sure yet what is wrong.
+
+
 
 ## DISCLAIMER
 
@@ -32,6 +34,9 @@ list of files impacted by the changes:
     - src/runtime/internal/goexperiment/flags.go (updated)
     - src/runtime/tagptr_64bit.go (updated)
     - src/runtime/malloc.go (updated)
+     
+    GCC-12 is needed to be able to compile with CGO_ENABLED=1 without issues and GOGC=off is mandatory to avoid crashes during garbage collector on IBMi.
+    
 
 ## steps to compile go on IBMi
 
@@ -134,7 +139,11 @@ We can as a workaround disable the garbage collector by setting GOGC=off.
 After that at least go1.24 can compile the hello world example. 
 Trying to test some go modules with go1.24 to see if we have other issues.
 
-Another issue is due to sigset_t struct already defined in os400 in /usr/include/sys/time.h (similar issue described here : https://community.ibm.com/community/user/power/discussion/gcc-struct-sigset-t-conflicts-with-aix-systimeh). Need to check if using gcc-12 instead of gcc-10 will solve the issue. A workaround is to compile using CGO_ENABLED=0 for now.
+Another issue is due to sigset_t struct already defined in os400 in /usr/include/sys/time.h (similar issue described here : https://community.ibm.com/community/user/power/discussion/gcc-struct-sigset-t-conflicts-with-aix-systimeh). Gcc-12 solves the issue. 
+
+And go 1.24 is working fine on IBMi! 
+
+Next steps are to try to compile some other go projects on IBMi to see if we have other issues.
 
 
 
