@@ -3,7 +3,7 @@
 This repository is based on all work done by the community in order to make the Go programming language available on IBMi.
 
 This repo contains a fork of Go 1.24 with modifications merged from [https://github.com/JasonTashtego/go]. 
-It's a wonderful job done by the community and here it's to have all existing information about all changes that need to be done to have go compiling on IBMi. I tested only on IBMi V7R5 with go 1.22.8 and go 1.24. And for now even if it compiles fine go and hello world program.
+It's a wonderful job done by the community and here it's to have all existing information about all changes that need to be done to have go compiling on IBMi. I tested only on IBMi V7R5 with go 1.22.8 and go 1.24. It compiles fine go itself and hello world program.
 
 
 
@@ -57,7 +57,7 @@ list of files impacted by the changes:
 
     source .go
 
-You need to have a go compiler on your Linux in this example it was 1.22.8. You download the go version you want to use for your IBMi.
+You need to have a go compiler on your Linux in this example it was 1.24. You download the go version you want to use for your IBMi.
 Go into src and execute :
     
     ./all.bash
@@ -116,7 +116,7 @@ Go to go-aix-ppc64-bootstrap/src and execute :
 
     ./all.bash
 
-And if all is correct you will see something like (with go 1.22.8 only for now) : 
+And if all is correct you will see something like : 
 
     ##### Test execution environment.
     # GOARCH: ppc64
