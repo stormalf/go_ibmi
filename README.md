@@ -109,6 +109,7 @@ define the .go like :
     export GOROOT=~/go1.24
     export PATH=~/go1.24/bin:$PATH
     export GOGC=off
+    export GOPROXY=direct
 
     source .go
 
@@ -138,7 +139,8 @@ Another issue is due to sigset_t struct already defined in os400 in /usr/include
 
 And go 1.24 is working fine on IBMi! 
 
-The issues with go dependencies are due to the DNS port 53 not listening on the IBMi. 
+The issues with go dependencies are due to proxy because some dependencies like github.com work fine but dependencies with redirection failed with timeout.
+I'll test GOPROXY=direct to see if it works better.
 
 
 # The Go Programming Language
