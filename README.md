@@ -3,7 +3,7 @@
 This repository is based on all work done by the community in order to make the Go programming language available on IBMi.
 
 This repo contains a fork of Go 1.24 with modifications merged from [https://github.com/JasonTashtego/go]. 
-It's a wonderful job done by the community and here it's to have all existing information about all changes that need to be done to have go compiling on IBMi. I tested only on IBMi V7R5 with go 1.22.8 and go 1.24. It compiles fine go itself and hello world program.
+It's a wonderful job done by the community and here it's to have all existing information about all changes that need to be done to have go compiling on IBMi. I tested only on IBMi V7R5 with go 1.22.8 and go 1.24. It compiles fine go itself and hello world program and other go examples.
 
 
 
@@ -137,10 +137,12 @@ After that at least go1.24 can compile the hello world example.
 
 Another issue is due to sigset_t struct already defined in os400 in /usr/include/sys/time.h (similar issue described here : https://community.ibm.com/community/user/power/discussion/gcc-struct-sigset-t-conflicts-with-aix-systimeh). Gcc-12 solves the issue. 
 
-And go 1.24 is working fine on IBMi! 
+The issues with go dependencies are due to missing /etc/resolv.conf on IBMi.
+After creating /etc/resolv.conf on IFS and putting :
 
-The issues with go dependencies are due to proxy because some dependencies like github.com work fine but dependencies with redirection failed with timeout.
-I'll test GOPROXY=direct to see if it works better.
+   nameserver 8.8 8.8
+   
+No more issue with dependencies.  Go 1.24 is working fine on IBMi!!!
 
 
 # The Go Programming Language
