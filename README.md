@@ -101,7 +101,7 @@ define the .go like :
     export GOEXPERIMENT=iseriesaix
     export GOOS=aix
     export GOARCH=ppc64
-    export CC=/QOpenSys/pkgs/bin/gcc-10
+    export CC=/QOpenSys/pkgs/bin/gcc-12
     export CGO_ENABLED=1
     export GOMAXPROCS=1
     export GOROOT_BOOTSTRAP=~/go1.24
